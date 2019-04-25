@@ -44,7 +44,41 @@ it("should render imageLinks", () => {
   expect(img).toBeInTheDocument();
   expect(img.src).toEqual(thumbnail);
 });
-// it("should use default image as a fallback");
-// it("should render publishedDate");
-// it("should render publisher");
-// it("should render infoLink");
+
+it("should use default image as a fallback", () => {
+  const thumbnail =
+    "https://books.google.com/googlebooks/images/no_cover_thumb.gif";
+  const subject = render(<ListItem />);
+
+  const img = subject.container.querySelector("img");
+  expect(img).toBeInTheDocument();
+  expect(img.src).toEqual(thumbnail);
+});
+
+it("should render publishedDate", () => {
+  const publishedDate = "03-09-1989";
+  const volumeInfo = { publishedDate };
+  const subject = render(<ListItem volumeInfo={volumeInfo} />);
+
+  expect(subject.queryByText(RegExp(`.*${publishedDate}`))).toBeInTheDocument();
+});
+
+it("should render publisher", () => {
+  const publisher = "McGraw";
+  const volumeInfo = { publisher };
+  const subject = render(<ListItem volumeInfo={volumeInfo} />);
+
+  expect(subject.queryByText(RegExp(`${publisher}.*`))).toBeInTheDocument();
+});
+
+it("should render infoLink", () => {
+  const infoLink = "https://foobar.com/zanzabar";
+  const volumeInfo = { infoLink };
+  const subject = render(<ListItem volumeInfo={volumeInfo} />);
+  const link = subject.container.querySelector("a");
+
+  expect(link).toBeInTheDocument();
+  expect(link.href).toEqual(infoLink);
+  expect(link.target).toEqual("_blank");
+  expect(link.rel).toEqual("noopener noreferrer");
+});
