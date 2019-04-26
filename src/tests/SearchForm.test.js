@@ -51,7 +51,7 @@ it("should render button action", () => {
 it("should fire onClick handler when button is clicked", () => {
   const message = "click me";
   const fn = jest.fn();
-  const subject = render(<SearchForm buttonAction={message} onClick={fn} />);
+  const subject = render(<SearchForm buttonAction={message} onSubmit={fn} />);
 
   const button = subject.getByText(message);
 

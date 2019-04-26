@@ -1,17 +1,16 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-// TODO: wrap this in a form tag, make it so hitting enter with the input focused submits the form
-function SearchForm({ onChange, placeholder, query, buttonAction, onClick }) {
+function SearchForm({ onChange, placeholder, query, buttonAction, onSubmit }) {
   return (
-    <Fragment>
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         placeholder={placeholder}
         onChange={onChange}
         value={query}
       />
-      <button onClick={onClick}>{buttonAction}</button>
-    </Fragment>
+      <input type="submit" value={buttonAction} />
+    </form>
   );
 }
 
