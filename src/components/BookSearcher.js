@@ -83,7 +83,7 @@ class BookSearcher extends Component {
     // So we can always just make the start index the # of books so far
     const startIndex = this.state.books.length;
     const query = this.state.query;
-    return queryBooksApi({query, maxResults, startIndex});
+    return queryBooksApi({ query, maxResults, startIndex });
   }
 
   render() {
