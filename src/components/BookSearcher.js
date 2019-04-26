@@ -96,7 +96,7 @@ class BookSearcher extends Component {
             placeholder="Title, ISBN, Author, ..."
             onChange={this.handleSearchChange}
             query={this.state.query}
-            onClick={this.handleSearchClick}
+            onSubmit={this.handleSearchClick}
           />
         </header>
 
