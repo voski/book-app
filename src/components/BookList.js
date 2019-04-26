@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ListItem from "./ListItem";
 
 /* component for the list of books */
-function BookList({ books }) {
+function BookList({ books = [] }) {
   // sometimes API returns same item.id with a different etag
   // combine both so react will stay happy and not complain about duplicate keys
   const bookItems = books.map(item => (
