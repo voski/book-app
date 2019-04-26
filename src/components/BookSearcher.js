@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import SearchForm from "./SearchForm";
 import Hideable from "./Hideable";
 import BookList from "./BookList";
+import queryBooksApi from "../api/GoogleBooks";
 
 //main component arranges child components and holds state
 class BookSearcher extends Component {
@@ -81,16 +82,8 @@ class BookSearcher extends Component {
     // If we have 10 books so far the last books index will be 9.
     // So we can always just make the start index the # of books so far
     const startIndex = this.state.books.length;
-    const API = `https://www.googleapis.com/books/v1/volumes?q=${
-      this.state.query
-    }&maxResults=${maxResults}&startIndex=${startIndex}`;
-
-    return fetch(API).then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error("Error searching for books");
-    });
+    const query = this.state.query;
+    return queryBooksApi({query, maxResults, startIndex});
   }
 
   render() {
